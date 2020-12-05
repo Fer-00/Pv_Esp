@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Paises extends JFrame implements ActionListener
 {
@@ -29,61 +30,66 @@ public class Paises extends JFrame implements ActionListener
 		if (lingua == 'p')
 		{
 			u = new JButton("Uruguai",iu,SwingConstants.LEFT);
-			u.addActionListener(new CatPort());
+			u.addActionListener(new PPort());
 			add(u);
 			a = new JButton("Argentina",ia,SwingConstants.LEFT);
-			a.addActionListener(new CatPort());
+			a.addActionListener(new PPort());
 			add(a);
 			p = new JButton("Paraguai",ip,SwingConstants.LEFT);
-			p.addActionListener(new CatPort());
+			p.addActionListener(new PPort());
 			add(p);
 			c = new JButton("Chile",ic,SwingConstants.LEFT);
-			c.addActionListener(new CatPort());
+			c.addActionListener(new PPort());
 			add(c);
 			eq = new JButton("Equador",ieq,SwingConstants.RIGHT);
-			eq.addActionListener(new CatPort());
+			eq.addActionListener(new PPort());
 			add(eq);
 			es = new JButton("Espanha",ies,SwingConstants.RIGHT);
-			es.addActionListener(new CatPort());
+			es.addActionListener(new PPort());
 			add(es);
 			cr = new JButton("Costa Rica",icr,SwingConstants.RIGHT);
-			cr.addActionListener(new CatPort());
+			cr.addActionListener(new PPort());
 			add(cr);
 			m = new JButton("México",im,SwingConstants.RIGHT);
-			m.addActionListener(new CatPort());
+			m.addActionListener(new PPort());
+			add(m);	
+		}
+		else if(lingua == 'e')
+		{
+			u = new JButton("Uruguay",iu,SwingConstants.LEFT);
+			u.addActionListener(new PEsp());
+			add(u);
+			a = new JButton("Argentina",ia,SwingConstants.LEFT);
+			a.addActionListener(new PEsp());
+			add(a);
+			p = new JButton("Paraguay",ip,SwingConstants.LEFT);
+			p.addActionListener(new PEsp());
+			add(p);
+			c = new JButton("Chile",ic,SwingConstants.LEFT);
+			c.addActionListener(new PEsp());
+			add(c);
+			eq = new JButton("Ecuador",ieq,SwingConstants.RIGHT);
+			eq.addActionListener(new PEsp());
+			add(eq);
+			es = new JButton("España",ies,SwingConstants.RIGHT);
+			es.addActionListener(new PEsp());
+			add(es);
+			cr = new JButton("Costa Rica",icr,SwingConstants.RIGHT);
+			cr.addActionListener(new PEsp());
+			add(cr);
+			m = new JButton("México",im,SwingConstants.RIGHT);
+			m.addActionListener(new PEsp());
 			add(m);	
 		}
 		else
 		{
-			u = new JButton("Uruguay",iu,SwingConstants.LEFT);
-			u.addActionListener(new CatEsp());
-			add(u);
-			a = new JButton("Argentina",ia,SwingConstants.LEFT);
-			a.addActionListener(new CatEsp());
-			add(a);
-			p = new JButton("Paraguay",ip,SwingConstants.LEFT);
-			p.addActionListener(new CatEsp());
-			add(p);
-			c = new JButton("Chile",ic,SwingConstants.LEFT);
-			c.addActionListener(new CatEsp());
-			add(c);
-			eq = new JButton("Ecuador",ieq,SwingConstants.RIGHT);
-			eq.addActionListener(new CatEsp());
-			add(eq);
-			es = new JButton("España",ies,SwingConstants.RIGHT);
-			es.addActionListener(new CatEsp());
-			add(es);
-			cr = new JButton("Costa Rica",icr,SwingConstants.RIGHT);
-			cr.addActionListener(new CatEsp());
-			add(cr);
-			m = new JButton("México",im,SwingConstants.RIGHT);
-			m.addActionListener(new CatEsp());
-			add(m);	
+			this.dispose();
+			JOptionPane.showMessageDialog(null,"Ocorreu um erro // Ocurrio un error",JOptionPane.WARNING_MESSAGE);
 		}
 	}
 
-	class CatPort implements ActionListener
-	{
+	class PPort implements ActionListener
+	{ 
 		char pais;
 
 		@Override
@@ -115,7 +121,7 @@ public class Paises extends JFrame implements ActionListener
 			}
 	}
 
-	class CatEsp implements ActionListener
+	class PEsp implements ActionListener
 	{
 		char pais;
 
@@ -138,7 +144,7 @@ public class Paises extends JFrame implements ActionListener
     				pais = 'r';
     			else
     				pais = 'm';
-    			
+
 				Categorias cat = new Categorias('e',pais);
 				cat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 				cat.setSize(400,100);
