@@ -28,8 +28,8 @@ public class Lingua extends JFrame implements ActionListener
 		livro = new JLabel("Livro de Receitas",SwingConstants.CENTER);
 		add(livro);
 
-		e = new JRadioButton("Español",SwingConstants.LEFT);
-		p = new JRadioButton("Português",SwingConstants.RIGHT);
+		e = new JRadioButton("Español");
+		p = new JRadioButton("Português");
 		add(e);
 		add(p);
 
@@ -44,24 +44,8 @@ public class Lingua extends JFrame implements ActionListener
 		ok.addActionListener(this);
 	}
 
-	private class lingua implements ItemListener
-	{
-		public lingua()
-		{
-			lingua = "p";
-			add(ok,SwingConstants.RIGHT);
-		}
-
-		public lingua(String esp)
-		{
-			lingua = "e";
-			livro.setText("Libro de Cocina");
-			add(ok,SwingConstants.RIGHT);
-		}
-	}
-
 	@Override
-		public void ActionPerformed (ActionEvent evt)
+		public void actionPerformed (ActionEvent evt)
 		{
 			Paises paises = new Paises(lingua);
 			paises.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
@@ -69,5 +53,26 @@ public class Lingua extends JFrame implements ActionListener
 			paises.setLocationRelativeTo(null);
 			paises.setVisible(true);
 			this.dispose();
-		} 
+		}
+
+	private class lingua implements ItemListener
+	{
+		public lingua()
+		{
+			lingua = 'p';
+		}
+
+		public lingua(String esp)
+		{
+			lingua = 'e';
+			livro.setText("Libro de Cocina");
+		}
+
+		@Override
+			public void itemStateChanged(ItemEvent event)
+			{
+				add(ok);
+			}
+
+	} 
 }
