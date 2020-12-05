@@ -1,5 +1,3 @@
-package trabalho_final_adriane;
-
 import javax.swing.JFrame;
 
 public class Executor{

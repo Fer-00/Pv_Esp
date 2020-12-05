@@ -1,5 +1,3 @@
-package trabalho_final_adriane;
-
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +17,7 @@ public class Lingua extends JFrame implements ActionListener
 	private JRadioButton p;
 	private ButtonGroup lin;
 	private JButton ok;
-	private char lingua;
+	public char lingua;
 
 	public Lingua()
 	{
@@ -37,11 +35,12 @@ public class Lingua extends JFrame implements ActionListener
 		lin.add(e);
 		lin.add(p);
 
-		e.addItemListener(new lingua("Libro de Cocina"));
+		e.addItemListener(new lingua());
 		p.addItemListener(new lingua());
 		
 		ok = new JButton("Ok");
 		ok.addActionListener(this);
+		add(ok);
 	}
 
 	@Override
@@ -59,19 +58,20 @@ public class Lingua extends JFrame implements ActionListener
 	{
 		public lingua()
 		{
-			lingua = 'p';
-		}
-
-		public lingua(String esp)
-		{
-			lingua = 'e';
-			livro.setText("Libro de Cocina");
 		}
 
 		@Override
 			public void itemStateChanged(ItemEvent event)
 			{
-				add(ok);
+				if (e.isSelected()) {
+					lingua = 'e';
+					livro.setText("Libro de Cocina");
+				}
+				else
+				{
+					lingua = 'p';
+					livro.setText("Livro de Receitas");
+				}
 			}
 
 	} 

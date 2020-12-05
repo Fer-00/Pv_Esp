@@ -1,5 +1,3 @@
-package trabalho_final_adriane;
-
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +18,7 @@ public class Paises extends JFrame
 	Icon ieq = new ImageIcon(getClass().getResource("EQ.png"));
 	Icon ies = new ImageIcon(getClass().getResource("E.png"));
 	Icon icr = new ImageIcon(getClass().getResource("CR.png"));
-	Icon im = new ImageIcon(getClass().getResource("ME.png"));
+	Icon im = new ImageIcon(getClass().getResource("M.png"));
 
 	public Paises(char lingua)
 	{

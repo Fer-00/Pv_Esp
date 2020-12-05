@@ -1,5 +1,3 @@
-package trabalho_final_adriane;
-
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +15,7 @@ public class Categorias extends JFrame
 		setLayout(new FlowLayout());
 
 		pais = aux;
+		
 		if (lingua == 'p')
 		{
 			r = new JButton("Refeições");
@@ -88,13 +87,12 @@ public class Categorias extends JFrame
     			else
     				cat = 'a';
 				
-				//Receitas rec = new Receitas('p',cat);
-				//rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-				//rec.setSize(400,100);
-				//rec.setLocationRelativeTo(null);
-				//rec.setVisible(true);
-				//this.setVisible(false);
-				//this.dispose();
+				dispose();
+				Receitas rec = new Receitas('p',pais,cat);
+				rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+				rec.setSize(400,100);
+				rec.setLocationRelativeTo(null);
+				rec.setVisible(true);
 			}
 	}
 
@@ -118,13 +116,12 @@ public class Categorias extends JFrame
     			else
     				cat = 'a';
 
-				//Receitas rec = new Receitas('e',cat);
-				//rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-				//rec.setSize(400,100);
-				//rec.setLocationRelativeTo(null);
-				//rec.setVisible(true);
-				//this.setVisible(false);
-				//this.dispose();
+    			dispose();
+				Receitas rec = new Receitas('e',pais,cat);
+				rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+				rec.setSize(400,100);
+				rec.setLocationRelativeTo(null);
+				rec.setVisible(true);
 			}
 	}
 }
