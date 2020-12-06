@@ -11,7 +11,7 @@ public class Receitas extends JFrame
 {
 	private JLabel head;
 
-	public Receitas(char lingua, char auxp, char auxc)
+	public Receitas(char lingua, char pais, char categoria)
 	{
 		if (lingua == 'p')
 		{
@@ -29,40 +29,43 @@ public class Receitas extends JFrame
 			this.setVisible(false);
 			this.dispose();
 		}
-		private String retornaPais(char aux, char lingua)
-		{
-			char[] paises = {'u','a','p','c','q','s','r','m'};
-			String[] nomePaisesP = {"Uruguai","Argentina","Paraguai","Chile","Equador","Espanha","Costa Rica","México"};
-			String[] nomePaisesE = {"Uruguay","Argentina","Paraguay","Chile","Ecuador","España","Costa Rica","México"};
+	}
+	
+	public String retornaPais(char aux, char lingua)
+	{
+		char[] paises = {'u','a','p','c','q','s','r','m'};
+		String[] nomePaisesP = {"Uruguai","Argentina","Paraguai","Chile","Equador","Espanha","Costa Rica","México"};
+		String[] nomePaisesE = {"Uruguay","Argentina","Paraguay","Chile","Ecuador","España","Costa Rica","México"};
 			
-			if (lingua == 'p')
+		if (lingua == 'p')
+		{
+			for (int i = 0; i < 8; ++i)
 			{
-				for (int i; i = 0; i = i + 2) {
-					if (aux == paises[i])
-					{
-						return nomePaisesP[i];
-					}
-					else
-						continue;
+				if (aux == paises[i])
+				{
+					return nomePaisesP[i];
 				}
-			}
-			else if (lingua == 'e') 
-			{
-				for (int i; i = 0; i = i + 2) {
-					if (aux == paises[i])
-					{
-						return nomePaisesE[i];
-					}
-					else
-						continue;
-				}
-			}
-			else
-			{
-				JOptionPane.showMessageDialog(null,"Ocorreu um erro","Ocurrio un error",JOptionPane.WARNING_MESSAGE);
-				this.setVisible(false);
-				this.dispose();
+				else
+					continue;
 			}
 		}
+		else if (lingua == 'e') 
+		{
+			for (int i = 0; i < 8; ++i)
+			{
+				if (aux == paises[i])
+				{
+					return nomePaisesE[i];
+				}
+				else
+					continue;
+			}
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(null,"Ocorreu um erro","Ocurrio un error",JOptionPane.WARNING_MESSAGE);
+			dispose();
+		}
+		return " ";
 	}
 }

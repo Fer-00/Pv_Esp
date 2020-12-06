@@ -7,7 +7,11 @@ import javax.swing.JOptionPane;
 
 public class Categorias extends JFrame
 {
-	private JButton d, s, r, o, b, a; // doces, salgados, refeições, sobremesas e bebidas e bebidas alcoolicas
+	public final JButton[] categorias = new JButton[6]; // doces, salgados, refeições, sobremesas e bebidas e bebidas alcoolicas
+	public final char[] cats = {'d','s','r','o','b','a'};
+	private final String[] categoriasP = {"Refeições","Salgados","Bebidas","Sobremesas","Doces","Coquetéis"};
+	private final String[] categoriasE = {"Comidas","Bocadillos","Bebidas","Postres","Dulces","Cócteles"};
+
 	public char pais;
 	
 	public Categorias(char lingua, char aux)
@@ -15,48 +19,24 @@ public class Categorias extends JFrame
 		setLayout(new FlowLayout());
 
 		pais = aux;
-		
+
 		if (lingua == 'p')
 		{
-			r = new JButton("Refeições");
-			r.addActionListener(new CPort());
-			add(r);
-			s = new JButton("Salgados");
-			s.addActionListener(new CPort());
-			add(s);
-			b = new JButton("Bebidas");
-			b.addActionListener(new CPort());
-			add(b);
-			o = new JButton("Sobremesas");
-			o.addActionListener(new CPort());
-			add(o);
-			d = new JButton("Doces");
-			d.addActionListener(new CPort());
-			add(d);
-			a = new JButton("Coquetéis");
-			a.addActionListener(new CPort());
-			add(a);
+			for (int i = 0; i < 6; ++i)
+			{
+				categorias[i] = new JButton(categoriasP[i]);
+				categorias[i].addActionListener(new CPort());
+				add(categorias[i]);
+			}
 		}
 		else if (lingua == 'e')
 		{
-			r = new JButton("Comidas");
-			r.addActionListener(new CPort());
-			add(r);
-			s = new JButton("Bocadillos");
-			s.addActionListener(new CPort());
-			add(s);
-			b = new JButton("Bebidas");
-			b.addActionListener(new CPort());
-			add(b);
-			o = new JButton("Postres");
-			o.addActionListener(new CPort());
-			add(o);
-			d = new JButton("Dulces");
-			d.addActionListener(new CPort());
-			add(d);
-			a = new JButton("Cócteles");
-			a.addActionListener(new CPort());
-			add(a);
+			for (int i = 0; i < 6; ++i)
+			{
+				categorias[i] = new JButton(categoriasE[i]);
+				categorias[i].addActionListener(new CEsp());
+				add(categorias[i]);
+			}
 		}
 		else
 		{
@@ -74,18 +54,12 @@ public class Categorias extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if ( e.getSource() == r )
-					cat = 'r';
-    			else if ( e.getSource() == o )
-    				cat = 'o';
-    			else if ( e.getSource() == s )
-    				cat = 's';
-    			else if ( e.getSource() == d )
-    				cat = 'd';
-    			else if ( e.getSource() == b )
-    				cat = 'b';
-    			else
-    				cat = 'a';
+				for (int i = 0;i < 6;++i) {
+					if (e.getSource() == categorias[i])
+						cat = cats[i];
+					else
+						continue;
+				}
 				
 				dispose();
 				Receitas rec = new Receitas('p',pais,cat);
@@ -103,18 +77,12 @@ public class Categorias extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if ( e.getSource() == r )
-					cat = 'r';
-    			else if ( e.getSource() == o )
-    				cat = 'o';
-    			else if ( e.getSource() == s )
-    				cat = 's';
-    			else if ( e.getSource() == d )
-    				cat = 'd';
-    			else if ( e.getSource() == b )
-    				cat = 'b';
-    			else
-    				cat = 'a';
+				for (int i = 0;i < 6;++i) {
+					if (e.getSource() == categorias[i])
+						cat = cats[i];
+					else
+						continue;
+				}
 
     			dispose();
 				Receitas rec = new Receitas('e',pais,cat);

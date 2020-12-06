@@ -9,16 +9,11 @@ import javax.swing.JOptionPane;
 
 public class Paises extends JFrame
 {
-	private JButton u, a, p, c, eq, es, cr, m; // Uruguai, Argentina, Paraguai, Chile, Equador, Espanha, Costa Rica e México
-	
-	Icon iu = new ImageIcon(getClass().getResource("U.png"));
-	Icon ia = new ImageIcon(getClass().getResource("A.png"));
-	Icon ip = new ImageIcon(getClass().getResource("P.png"));
-	Icon ic = new ImageIcon(getClass().getResource("C.png"));
-	Icon ieq = new ImageIcon(getClass().getResource("EQ.png"));
-	Icon ies = new ImageIcon(getClass().getResource("E.png"));
-	Icon icr = new ImageIcon(getClass().getResource("CR.png"));
-	Icon im = new ImageIcon(getClass().getResource("M.png"));
+	public JButton[] paises = new JButton[8]; 
+	public final char[] abrev = {'u', 'a', 'p', 'c', 'q', 's', 'r', 'm'}; // Uruguai, Argentina, Paraguai, Chile, Equador, Espanha, Costa Rica e México
+	private final String[] nomePaisP = {"Uruguai","Argentina","Paraguai","Chile","Equador","Espanha","Costa Rica","México"};
+	private final String[] nomePaisE = {"Uruguay","Argentina","Paraguay","Chile","Ecuador","España","Costa Rica","México"};
+	private final String[] icones = {"U.png","A.png","P.png","C.png","EQ.png","E.png","CR.png","M.png"};
 
 	public Paises(char lingua)
 	{
@@ -26,57 +21,23 @@ public class Paises extends JFrame
 
 		if (lingua == 'p')
 		{
-			u = new JButton("Uruguai",iu);
-			u.addActionListener(new PPort());
-			add(u);
-			a = new JButton("Argentina",ia);
-			a.addActionListener(new PPort());
-			add(a);
-			p = new JButton("Paraguai",ip);
-			p.addActionListener(new PPort());
-			add(p);
-			c = new JButton("Chile",ic);
-			c.addActionListener(new PPort());
-			add(c);
-			eq = new JButton("Equador",ieq);
-			eq.addActionListener(new PPort());
-			add(eq);
-			es = new JButton("Espanha",ies);
-			es.addActionListener(new PPort());
-			add(es);
-			cr = new JButton("Costa Rica",icr);
-			cr.addActionListener(new PPort());
-			add(cr);
-			m = new JButton("México",im);
-			m.addActionListener(new PPort());
-			add(m);	
+			for (int i = 0;i<8;++i)
+			{
+				Icon icon = new ImageIcon(getClass().getResource(icones[i])); 
+				paises[i] = new JButton(nomePaisP[i],icon);
+				paises[i].addActionListener(new PPort());
+				add(paises[i]);
+			}
 		}
 		else if(lingua == 'e')
 		{
-			u = new JButton("Uruguay",iu);
-			u.addActionListener(new PEsp());
-			add(u);
-			a = new JButton("Argentina",ia);
-			a.addActionListener(new PEsp());
-			add(a);
-			p = new JButton("Paraguay",ip);
-			p.addActionListener(new PEsp());
-			add(p);
-			c = new JButton("Chile",ic);
-			c.addActionListener(new PEsp());
-			add(c);
-			eq = new JButton("Ecuador",ieq);
-			eq.addActionListener(new PEsp());
-			add(eq);
-			es = new JButton("España",ies);
-			es.addActionListener(new PEsp());
-			add(es);
-			cr = new JButton("Costa Rica",icr);
-			cr.addActionListener(new PEsp());
-			add(cr);
-			m = new JButton("México",im);
-			m.addActionListener(new PEsp());
-			add(m);	
+			for (int i = 0;i<8;++i)
+			{
+				Icon icon = new ImageIcon(getClass().getResource(icones[i])); 
+				paises[i] = new JButton(nomePaisE[i],icon);
+				paises[i].addActionListener(new PEsp());
+				add(paises[i]);
+			}
 		}
 		else
 		{
@@ -93,22 +54,10 @@ public class Paises extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if ( e.getSource() == u )
-					pais = 'u';
-    			else if ( e.getSource() == a )
-    				pais = 'a';
-    			else if ( e.getSource() == p )
-    				pais = 'p';
-    			else if ( e.getSource() == c )
-    				pais = 'c';
-    			else if ( e.getSource() == eq )
-    				pais = 'q';
-    			else if ( e.getSource() == es )
-    				pais = 's';
-    			else if ( e.getSource() == cr )
-    				pais = 'r';
-    			else
-    				pais = 'm';
+				for (int i = 0;i < 8;++i) {
+					if (e.getSource() == paises[i])
+						pais = abrev[i];
+				}
 
 				dispose();
 				Categorias cat = new Categorias('p',pais);
@@ -126,23 +75,11 @@ public class Paises extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				if ( e.getSource() == u )
-					pais = 'u';
-    			else if ( e.getSource() == a )
-    				pais = 'a';
-    			else if ( e.getSource() == p )
-    				pais = 'p';
-    			else if ( e.getSource() == c )
-    				pais = 'c';
-    			else if ( e.getSource() == eq )
-    				pais = 'q';
-    			else if ( e.getSource() == es )
-    				pais = 's';
-    			else if ( e.getSource() == cr )
-    				pais = 'r';
-    			else
-    				pais = 'm';
-				
+				for (int i = 0;i < 8;++i) {
+					if (e.getSource() == paises[i])
+						pais = abrev[i];
+				}
+
 				dispose();
 				Categorias cat = new Categorias('e',pais);
 				cat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
