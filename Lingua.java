@@ -23,7 +23,7 @@ public class Lingua extends JFrame implements ActionListener
 	{
 		setLayout(new FlowLayout());
 
-		livro = new JLabel("Livro de Receitas",SwingConstants.CENTER);
+		livro = new JLabel("Livro de Receitas",SwingConstants.CENTER); //Não funciona, verificar!!
 		add(livro);
 
 		e = new JRadioButton("Español");
