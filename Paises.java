@@ -54,7 +54,8 @@ public class Paises extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				for (int i = 0;i < 8;++i) {
+				for (int i = 0;i < 8;++i)
+				{
 					if (e.getSource() == paises[i])
 						pais = abrev[i];
 				}
@@ -75,7 +76,8 @@ public class Paises extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				for (int i = 0;i < 8;++i) {
+				for (int i = 0;i < 8;++i)
+				{
 					if (e.getSource() == paises[i])
 						pais = abrev[i];
 				}

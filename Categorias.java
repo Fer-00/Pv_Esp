@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Categorias extends JFrame
 {
 	public final JButton[] categorias = new JButton[6]; // doces, salgados, refeições, sobremesas e bebidas e bebidas alcoolicas
-	public final char[] cats = {'d','s','r','o','b','a'};
+	public final char[] cats = {'r','s','b','o','d','a'};
 	private final String[] categoriasP = {"Refeições","Salgados","Bebidas","Sobremesas","Doces","Coquetéis"};
 	private final String[] categoriasE = {"Comidas","Bocadillos","Bebidas","Postres","Dulces","Cócteles"};
 
@@ -54,7 +54,8 @@ public class Categorias extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				for (int i = 0;i < 6;++i) {
+				for (int i = 0;i < 6;++i)
+				{
 					if (e.getSource() == categorias[i])
 						cat = cats[i];
 					else
@@ -77,7 +78,8 @@ public class Categorias extends JFrame
 		@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				for (int i = 0;i < 6;++i) {
+				for (int i = 0;i < 6;++i)
+				{
 					if (e.getSource() == categorias[i])
 						cat = cats[i];
 					else

@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JOptionPane; 
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -15,20 +14,24 @@ public class Receitas extends JFrame implements ActionListener
 {
 	private JLabel head;
 	public char lingua;
+	public ArrayList<String> titulos = new ArrayList<>();
+    public JButton[] receitas = new JButton[100];
+
 
 	public Receitas(char auxL, char pais, char categoria)
 	{
+		setLayout(new FlowLayout());
 		lingua = auxL;
 
 		if (lingua == 'p')
 		{
-			head = new JLabel("Receitas da/do " + retornaPais(pais,lingua),SwingConstants.CENTER);
+			head = new JLabel("Receitas da/do " + retornaPais(pais));
 			add(head);
 			retornaReceitas(pais,categoria);
 		}
 		else if (lingua == 'e') 
 		{
-			head = new JLabel("Recetas de el/la " + retornaPais(pais,lingua),SwingConstants.CENTER);
+			head = new JLabel("Recetas de el/la " + retornaPais(pais));
 			add(head);
 			retornaReceitas(pais,categoria);
 		}
@@ -51,9 +54,7 @@ public class Receitas extends JFrame implements ActionListener
 			for (int i = 0; i < 8; ++i)
 			{
 				if (aux == paises[i])
-				{
 					return nomePaisesP[i];
-				}
 				else
 					continue;
 			}
@@ -63,9 +64,7 @@ public class Receitas extends JFrame implements ActionListener
 			for (int i = 0; i < 8; ++i)
 			{
 				if (aux == paises[i])
-				{
 					return nomePaisesE[i];
-				}
 				else
 					continue;
 			}
@@ -78,9 +77,9 @@ public class Receitas extends JFrame implements ActionListener
 		return " ";
 	}
 
-	public String retornaReceitas(char pais, char categoria)
+	public void retornaReceitas(char pais, char categoria)
 	{
-		String identificador = pais + categoria;
+		String identificador = new StringBuilder().append(pais).append(categoria).toString();
 
 		if (lingua == 'p')
 		{
@@ -90,21 +89,22 @@ public class Receitas extends JFrame implements ActionListener
             	BufferedReader leitor = new BufferedReader(rec);
  
             	String linha; 
-            	ArrayList<String> titulos = new ArrayList<>();
  
             	while ((linha = leitor.readLine()) != null)
             	{
-            		if (linha == identificador) 
-            		    titulos.add(linha + 1); 
+            		if (linha.equals(identificador))
+            		{
+            			linha = leitor.readLine(); 
+            		    titulos.add(linha); 
+            		}
             		else
             			continue;
             	}
-
-            	JButton[] receitas = new JButton[titulos.size()];
             	
             	for (int i = 0;i < titulos.size();++i)
             	{
-            		receitas[i] = new JButton[titulos[i]];
+            		receitas[i] = new JButton(titulos.get(i));
+            		receitas[i].setSize(20,10);
             		receitas[i].addActionListener(this);
             		add(receitas[i]);	
             	}
@@ -125,22 +125,21 @@ public class Receitas extends JFrame implements ActionListener
 				FileReader rec = new FileReader("RecE.txt");
             	BufferedReader leitor = new BufferedReader(rec);
  
-            	String linha; 
-            	ArrayList<String> titulos = new ArrayList<>();
- 
+            	String linha;
             	while ((linha = leitor.readLine()) != null)
             	{
-            		if (linha == identificador) 
-            		    titulos.add(linha + 1); 
+            		if (linha.equals(identificador))
+            		{
+            			linha = leitor.readLine();
+            		    titulos.add(linha);
+	            	}
             		else
             			continue;
             	}
-
-            	JButton[] receitas = new JButton[titulos.size()];
             	
             	for (int i = 0;i < titulos.size();++i)
             	{
-            		receitas[i] = new JButton[titulos[i]];
+            		receitas[i] = new JButton(titulos.get(i));
             		receitas[i].addActionListener(this);
             		add(receitas[i]);	
             	}
@@ -165,10 +164,12 @@ public class Receitas extends JFrame implements ActionListener
 	@Override
 		public void actionPerformed(ActionEvent evt)
 		{
-			for (int i = 0;i < titulos.size(); ++i) {
-				if (evt.getSource() == receitas[i]) {
+			for (int i = 0;i < titulos.size(); ++i)
+			{
+				if (evt.getSource() == receitas[i])
+				{
 					dispose();
-					Guia guia = new Guia(lingua,titulos[i]);
+					Guia guia = new Guia(lingua,titulos.get(i));
 					guia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					guia.setSize(400,400);
 					guia.setLocationRelativeTo(null);

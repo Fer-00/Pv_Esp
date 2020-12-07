@@ -2,7 +2,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ItemListener;
@@ -23,7 +22,7 @@ public class Lingua extends JFrame implements ActionListener
 	{
 		setLayout(new FlowLayout());
 
-		livro = new JLabel("Livro de Receitas",SwingConstants.CENTER); //Não funciona, verificar!!
+		livro = new JLabel("Livro de Receitas");
 		add(livro);
 
 		e = new JRadioButton("Español");
@@ -63,7 +62,8 @@ public class Lingua extends JFrame implements ActionListener
 		@Override
 			public void itemStateChanged(ItemEvent event)
 			{
-				if (e.isSelected()) {
+				if (e.isSelected())
+				{
 					lingua = 'e';
 					livro.setText("Libro de Cocina");
 				}
