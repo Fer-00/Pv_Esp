@@ -1,14 +1,8 @@
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane; 
-import java.io.FileReader;
-import java.io.BufferedReader;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.io.*;
 import java.util.ArrayList;
-import java.io.IOException;
 
 public class Receitas extends JFrame implements ActionListener
 {
@@ -26,12 +20,14 @@ public class Receitas extends JFrame implements ActionListener
 		if (lingua == 'p')
 		{
 			head = new JLabel("Receitas da/do " + retornaPais(pais));
+			head.setFont(new Font("Arial", Font.BOLD, 20));
 			add(head);
 			retornaReceitas(pais,categoria);
 		}
 		else if (lingua == 'e') 
 		{
 			head = new JLabel("Recetas de el/la " + retornaPais(pais));
+			head.setFont(new Font("Arial", Font.BOLD, 20));
 			add(head);
 			retornaReceitas(pais,categoria);
 		}
@@ -104,7 +100,8 @@ public class Receitas extends JFrame implements ActionListener
             	for (int i = 0;i < titulos.size();++i)
             	{
             		receitas[i] = new JButton(titulos.get(i));
-            		receitas[i].setSize(20,10);
+            		receitas[i].setFont(new Font("Arial", Font.BOLD, 16));
+            		receitas[i].setSize(15,50);
             		receitas[i].addActionListener(this);
             		add(receitas[i]);	
             	}
@@ -170,8 +167,9 @@ public class Receitas extends JFrame implements ActionListener
 				{
 					dispose();
 					Guia guia = new Guia(lingua,titulos.get(i));
+					guia.getContentPane().setBackground(new Color(243,241,166));
 					guia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					guia.setSize(400,400);
+					guia.setSize(500,650);
 					guia.setLocationRelativeTo(null);
 					guia.setVisible(true);
 				}

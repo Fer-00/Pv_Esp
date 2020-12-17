@@ -1,9 +1,6 @@
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 
 public class Categorias extends JFrame
 {
@@ -25,6 +22,8 @@ public class Categorias extends JFrame
 			for (int i = 0; i < 6; ++i)
 			{
 				categorias[i] = new JButton(categoriasP[i]);
+				categorias[i].setSize(15,50);
+				categorias[i].setFont(new Font("Arial", Font.BOLD, 16));
 				categorias[i].addActionListener(new CPort());
 				add(categorias[i]);
 			}
@@ -34,6 +33,8 @@ public class Categorias extends JFrame
 			for (int i = 0; i < 6; ++i)
 			{
 				categorias[i] = new JButton(categoriasE[i]);
+				categorias[i].setSize(15,50);
+				categorias[i].setFont(new Font("Arial", Font.BOLD, 16));
 				categorias[i].addActionListener(new CEsp());
 				add(categorias[i]);
 			}
@@ -65,7 +66,7 @@ public class Categorias extends JFrame
 				dispose();
 				Receitas rec = new Receitas('p',pais,cat);
 				rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-				rec.setSize(400,100);
+				rec.setSize(500,650);
 				rec.setLocationRelativeTo(null);
 				rec.setVisible(true);
 			}
@@ -89,7 +90,7 @@ public class Categorias extends JFrame
     			dispose();
 				Receitas rec = new Receitas('e',pais,cat);
 				rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-				rec.setSize(400,100);
+				rec.setSize(500,650);
 				rec.setLocationRelativeTo(null);
 				rec.setVisible(true);
 			}

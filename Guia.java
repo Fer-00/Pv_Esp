@@ -1,14 +1,8 @@
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane; 
-import java.io.FileReader;
-import java.io.BufferedReader;
+import javax.swing.*;
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
-import java.io.IOException;
 
 public class Guia extends JFrame
 {
@@ -39,6 +33,7 @@ public class Guia extends JFrame
             			for (int i = 0;i < 3;++i)
             			{
             				proced[i] = new JLabel(linha);
+            				proced[i].setFont(new Font("Arial", Font.BOLD, 16));
             				add(proced[i]);
             				linha = leitor.readLine();
             			}
@@ -72,6 +67,7 @@ public class Guia extends JFrame
             			for (int i = 0;i < 3;++i) 
             			{
             				proced[i] = new JLabel(linha);
+            				proced[i].setFont(new Font("Arial", Font.BOLD, 16));
             				add(proced[i]);
             				linha = leitor.readLine();
             			}

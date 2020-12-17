@@ -6,7 +6,7 @@ public class Executor{
 		
 		Lingua lin = new Lingua();
 		lin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		lin.setSize(400,400);
+		lin.setSize(500,650);
 		lin.setLocationRelativeTo(null);
 		lin.setVisible(true);	
 	}

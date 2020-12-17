@@ -1,11 +1,6 @@
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 
 public class Paises extends JFrame
 {
@@ -25,6 +20,8 @@ public class Paises extends JFrame
 			{
 				Icon icon = new ImageIcon(getClass().getResource(icones[i])); 
 				paises[i] = new JButton(nomePaisP[i],icon);
+				paises[i].setSize(15,50);
+				paises[i].setFont(new Font("Arial", Font.BOLD, 16));
 				paises[i].addActionListener(new PPort());
 				add(paises[i]);
 			}
@@ -35,6 +32,8 @@ public class Paises extends JFrame
 			{
 				Icon icon = new ImageIcon(getClass().getResource(icones[i])); 
 				paises[i] = new JButton(nomePaisE[i],icon);
+				paises[i].setSize(15,50);
+				paises[i].setFont(new Font("Arial", Font.BOLD, 16));
 				paises[i].addActionListener(new PEsp());
 				add(paises[i]);
 			}
@@ -63,7 +62,7 @@ public class Paises extends JFrame
 				dispose();
 				Categorias cat = new Categorias('p',pais);
 				cat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-				cat.setSize(400,100);
+				cat.setSize(500,650);
 				cat.setLocationRelativeTo(null);
 				cat.setVisible(true);
 			}
@@ -85,7 +84,7 @@ public class Paises extends JFrame
 				dispose();
 				Categorias cat = new Categorias('e',pais);
 				cat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-				cat.setSize(400,100);
+				cat.setSize(500,650);
 				cat.setLocationRelativeTo(null);
 				cat.setVisible(true);
 			}
