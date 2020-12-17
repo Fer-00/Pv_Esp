@@ -21,9 +21,9 @@ public class Tela1 extends JFrame implements ActionListener
         descricao = new JLabel("Informações do Uruguai"); //setFont
         esquerda.add(descricao, BorderLayout.CENTER);
 
-        //Icon u = new ImageIcon (new ImageIcon(getClass().getResource("UB.png")));
-        bandeira = new JLabel("bandeira");
-        //bandeira.setIcon(u);
+        Icon u = new ImageIcon (getClass().getResource("Ub.jpeg"));
+        bandeira = new JLabel();
+        bandeira.setIcon(u);
 
         okay = new JButton("Okay");
         okay.addActionListener(this);
