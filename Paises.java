@@ -42,7 +42,7 @@ public class Paises extends JFrame
 		{
 			JOptionPane.showMessageDialog(null,"Ocorreu um erro","Ocurrio un error",JOptionPane.WARNING_MESSAGE);
 			this.setVisible(false);
-			this.dispose();
+			dispose();
 		}
 	}
 
