@@ -22,10 +22,11 @@ public class ReceitasU extends JFrame implements ActionListener
 		add(cont, BorderLayout.NORTH);
 
 		lingua = auxL;
+		head = new JLabel();
 
 		if (lingua == 'p')
 		{
-			head = new JLabel("Receitas do Uruguai");
+			head.setText("Receitas do Uruguai");
 			head.setFont(new Font("Arial", Font.BOLD, 20));
 			head.setBorder(new EmptyBorder(10,100,30,30));
 			cont.add(head);
@@ -33,7 +34,7 @@ public class ReceitasU extends JFrame implements ActionListener
 		}
 		else if (lingua == 'e') 
 		{
-			head = new JLabel("Recetas de el Uruguay");
+			head.setText("Recetas de el Uruguay");
 			head.setFont(new Font("Arial", Font.BOLD, 20));
 			head.setBorder(new EmptyBorder(10,100,30,30));
 			cont.add(head);
@@ -111,7 +112,6 @@ public class ReceitasU extends JFrame implements ActionListener
 				{
 					dispose();
 					GuiaU guia = new GuiaU(lingua,titulos.get(i));
-					guia.getContentPane().setBackground(new Color(243,241,166));
 					guia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					guia.setResizable(false);
 					guia.setSize(500,650);

@@ -79,8 +79,9 @@ public class CategoriasU extends JFrame implements ActionListener
 
 	}
 
+	char cat;
+	
 	@Override
-		char cat;
 		public void actionPerformed(ActionEvent e)
 		{
 			for (int i = 0;i < 6;++i)

@@ -9,11 +9,11 @@ public class GuiaU extends JFrame
 {
 	private final JPanel title, process;
 	public final JPanel img;
-	private final char lingua; 
+	private final char lingua;
+	public int acumulador = 0; 
 	private final String receita;
 	private final ArrayList<String> fases = new ArrayList<>();
-	private final JLabel titulo;
-	public final JLabel imagem;
+	private final JLabel titulo, imagem;
 	public final JCheckBox[] processo = new JCheckBox[50];
 
 	public GuiaU(char auxL, String nomeReceita)
@@ -21,7 +21,7 @@ public class GuiaU extends JFrame
 		setLayout(new BorderLayout());
 
 		title = new JPanel(new BorderLayout());
-		process = new JPanel(new GridLayout(0,2,5,5));
+		process = new JPanel(new GridLayout(0,1,5,5));
 		img = new JPanel(new BorderLayout());
 
 		add(title,BorderLayout.NORTH);
@@ -32,12 +32,13 @@ public class GuiaU extends JFrame
 		receita = nomeReceita;
 
 		titulo = new JLabel(receita);
-		titulo.setFont(new Font("Arial",Font.BOLD,20));
+		titulo.setFont(new Font("Arial",Font.BOLD,18));
 		titulo.setBorder(new EmptyBorder(20,50,20,50));
 		title.add(titulo);
 
 		String arquivo = retornaArquivo();
-		Handler handler = new Handler();
+		Handler handler = new Handler();	
+        imagem = new JLabel();
 			
 		try
 		{
@@ -53,19 +54,23 @@ public class GuiaU extends JFrame
            			for (int i = 0;i < 3;++i)
            			{
            				if (i == 0)
-           					continue;
+           					linha = leitor.readLine();
            				else if (i == 1) 
            				{
            					String[] splitted = linha.split(":");
-           					for (int j = 0; j < splitted.length; ++j) {
-           						fases.add(splitted[0]);
-           					}
+           					for (int j = 0; j < splitted.length; ++j)
+           						fases.add(splitted[j]);
+           					acumulador = splitted.length;
+	           				linha = leitor.readLine();
            				}
            				else if (i == 2)
            				{
-           					Icon aux = new ImageIcon(getClass().getResource(linha));
-            				imagem = new JLabel();
+           					Icon aux = new ImageIcon(getClass().getResource("M.jpg"));
 	            			imagem.setIcon(aux);
+	            			imagem.setBorder(new EmptyBorder(20,125,20,50));
+			            	img.add(imagem);
+			            	img.setVisible(false);
+	           				linha = leitor.readLine();
             			}
            				else
            				{
@@ -87,6 +92,7 @@ public class GuiaU extends JFrame
 		}
 		for (int i = 0; i < fases.size(); i++) {
 			processo[i] = new JCheckBox(fases.get(i));
+			processo[i].setFont(new Font("Arial",Font.PLAIN, 14));
            	processo[i].addItemListener(handler);
            	process.add(processo[i]);
 		}
@@ -109,15 +115,23 @@ public class GuiaU extends JFrame
 		}
 		
 		@Override
-			public void itemStateChanged(ItemEvent evt)
+			public void itemStateChanged(ItemEvent event)
 			{
-				for (int i = 0; i < processo.length; ++i) {
+				int aux = 0;
+				for (int i = 0; i < acumulador; ++i) {
 					if (processo[i].isSelected())
-						continue;
+					{
+						++aux;
+						if (aux == acumulador)
+							img.setVisible(true);
+					}
 					else
+					{
+						aux = 0;
 						break;
-	            	img.add(imagem);
+					}
 				}
 			}
 	}
+					
 }

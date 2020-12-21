@@ -12,16 +12,7 @@ public class Lingua extends JFrame implements ActionListener
 	private final JButton ok;
 	public char lingua;
 
-	public Lingua(){
-		Lingua lin = new Lingua(1);
-		lin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		lin.setSize(500,650);
-		lin.setResizable(false);
-		lin.setLocationRelativeTo(null);
-		lin.setVisible(true);	
-	}
-
-	public Lingua(int um)
+	public Lingua()
 	{
 		setLayout(new BorderLayout());
 
@@ -56,8 +47,8 @@ public class Lingua extends JFrame implements ActionListener
 		lin.add(e);
 		lin.add(p);
 
-		e.addItemListener(new lingua());
-		p.addItemListener(new lingua());
+		e.addItemListener(new Lin());
+		p.addItemListener(new Lin());
 		
 		Icon co = new ImageIcon (getClass().getResource("Co.png"));
         ok = new JButton("", co);
@@ -82,9 +73,9 @@ public class Lingua extends JFrame implements ActionListener
 			this.dispose();
 		}
 
-	private class lingua implements ItemListener
+	private class Lin implements ItemListener
 	{
-		public lingua()
+		public Lin()
 		{
 		}
 
