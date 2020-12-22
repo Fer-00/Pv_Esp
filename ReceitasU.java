@@ -8,20 +8,23 @@ import javax.swing.border.EmptyBorder;
 public class ReceitasU extends JFrame implements ActionListener
 {
 	private final JLabel head;
-	public final JPanel cont = new JPanel(new GridLayout(0,1,20,20));
-	public final char lingua;
-	public final ArrayList<String> titulos = new ArrayList<>();
-    public final JButton[] receitas = new JButton[5];
+	private final JButton ret;
+	private final JPanel cont = new JPanel(new GridLayout(0,1,20,20));
+	private final char lingua, categoria;
+	private final ArrayList<String> titulos = new ArrayList<>();
+    private final JButton[] receitas = new JButton[5];
 
 
-	public ReceitasU(char auxL, char categoria)
+	public ReceitasU(char auxL, char auxC)
 	{
 		setLayout(new BorderLayout());
 
 		cont.setBorder(new EmptyBorder(20,20,20,20));
+		cont.setBackground(new Color(255,222,173));
 		add(cont, BorderLayout.NORTH);
 
 		lingua = auxL;
+		categoria = auxC;
 		head = new JLabel();
 
 		if (lingua == 'p')
@@ -46,6 +49,15 @@ public class ReceitasU extends JFrame implements ActionListener
 			this.setVisible(false);
 			this.dispose();
 		}
+
+		Icon r = new ImageIcon (getClass().getResource("ret.png"));
+		ret = new JButton("",r);
+		ret.setBorder(null);
+		ret.setOpaque(false);
+		ret.setContentAreaFilled(false);
+		ret.setBorderPainted(false);
+		ret.addActionListener(this);
+		cont.add(ret,BorderLayout.SOUTH);
 	}
 
 	private String retornaArquivo()
@@ -106,20 +118,32 @@ public class ReceitasU extends JFrame implements ActionListener
 	@Override
 		public void actionPerformed(ActionEvent evt)
 		{
-			for (int i = 0;i < titulos.size(); ++i)
+			if (evt.getSource() == ret)
 			{
-				if (evt.getSource() == receitas[i])
+				dispose();
+				CategoriasU cat = new CategoriasU(lingua);
+				cat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+				cat.setSize(550,700);
+				cat.setResizable(false);
+				cat.setLocationRelativeTo(null);
+				cat.setVisible(true);
+			}
+			else{
+				for (int i = 0;i < titulos.size(); ++i)
 				{
-					dispose();
-					GuiaU guia = new GuiaU(lingua,titulos.get(i));
-					guia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					guia.setResizable(false);
-					guia.setSize(500,650);
-					guia.setLocationRelativeTo(null);
-					guia.setVisible(true);
+					if (evt.getSource() == receitas[i])
+					{
+						dispose();
+						GuiaU guia = new GuiaU(lingua,titulos.get(i),categoria);
+						guia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						guia.setResizable(false);
+						guia.setSize(550,700);
+						guia.setLocationRelativeTo(null);
+						guia.setVisible(true);
+					}
+					else
+						continue;
 				}
-				else
-					continue;
 			}
 		}
 }

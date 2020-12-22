@@ -5,8 +5,8 @@ import javax.swing.border.EmptyBorder;
 
 public class Lingua extends JFrame implements ActionListener
 {
-	private JPanel fundo, centro, baixo;
-	private JLabel livro, back;
+	private final JPanel centro, baixo;
+	private final JLabel livro;
 	private final JRadioButton e, p;
 	private final ButtonGroup lin;
 	private final JButton ok;
@@ -16,30 +16,34 @@ public class Lingua extends JFrame implements ActionListener
 	{
 		setLayout(new BorderLayout());
 
-		fundo = new JPanel();
-		fundo.setLayout(new BorderLayout());
-		add(fundo);
-
-		Icon couro = new ImageIcon(getClass().getResource("couro.jpeg"));
-		back = new JLabel();
-		back.setIcon(couro);
-		fundo.add(back,BorderLayout.CENTER);
-
 		centro = new JPanel(new BorderLayout());
-		baixo = new JPanel(new BorderLayout());fundo.add(centro,BorderLayout.CENTER);
-		fundo.add(baixo,BorderLayout.SOUTH);
+		centro.setBackground(new Color(173,216,230));
+		baixo = new JPanel(new BorderLayout());
+		baixo.setBorder(new EmptyBorder(0,0,20,0));
+		baixo.setBackground(new Color(173,216,230));
+
+		add(centro,BorderLayout.CENTER);
+		add(baixo,BorderLayout.SOUTH);
 
 		livro = new JLabel("Livro de Receitas");
 		livro.setFont(new Font("Arial", Font.BOLD, 36));
-		livro.setBorder(new EmptyBorder(0, 70, 0, 60));
+		livro.setBorder(new EmptyBorder(0, 90, 0, 80));
 		centro.add(livro,BorderLayout.CENTER);
 
 		e = new JRadioButton("Español");
 		e.setFont(new Font("Arial", Font.ITALIC, 14));
 		e.setBorder(new EmptyBorder(35, 35, 35, 35));
+		e.setOpaque(false);
+		e.setContentAreaFilled(false);
+		e.setBorderPainted(false);
+		
 		p = new JRadioButton("Português");
 		p.setFont(new Font("Arial", Font.ITALIC, 14));
 		p.setBorder(new EmptyBorder(35, 35, 35, 35));
+		p.setOpaque(false);
+		p.setContentAreaFilled(false);
+		p.setBorderPainted(false);
+		
 		baixo.add(e,BorderLayout.WEST);
 		baixo.add(p,BorderLayout.EAST);
 
@@ -52,7 +56,7 @@ public class Lingua extends JFrame implements ActionListener
 		
 		Icon co = new ImageIcon (getClass().getResource("Co.png"));
         ok = new JButton("", co);
-		ok.setBorder(new EmptyBorder(0, 40, 40, 40));
+		ok.setBorder(new EmptyBorder(60, 60, 60, 60));
         ok.setBorder(null);
         ok.setOpaque(false);
         ok.setContentAreaFilled(false);
@@ -66,7 +70,7 @@ public class Lingua extends JFrame implements ActionListener
 		{
 			Uruguay uruguay = new Uruguay(lingua);
 			uruguay.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-			uruguay.setSize(500,650);
+			uruguay.setSize(550,700);
 			uruguay.setResizable(false);
 			uruguay.setLocationRelativeTo(null);
 			uruguay.setVisible(true);
@@ -86,13 +90,13 @@ public class Lingua extends JFrame implements ActionListener
 				{
 					lingua = 'e';
 					livro.setText("Libro de Cocina");
-					livro.setBorder(new EmptyBorder(0, 90, 0, 60));
+					livro.setBorder(new EmptyBorder(0, 110, 0, 80));
 				}
 				else
 				{
 					lingua = 'p';
 					livro.setText("Livro de Receitas");
-					livro.setBorder(new EmptyBorder(0, 70, 0, 60));
+					livro.setBorder(new EmptyBorder(0, 90, 0, 80));
 				}
 			}
 	}

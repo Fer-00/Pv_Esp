@@ -6,23 +6,33 @@ import javax.swing.border.EmptyBorder;
 public class CategoriasU extends JFrame implements ActionListener
 {
 	private final JPanel alto, baixo;
+	private final JLabel img;
 	private final JTextArea desc;
-	public final JButton[] categorias = new JButton[6]; 
-	public final char[] cats = {'r','s','b','o','d','a'};
+	private final JButton ret;
+	private final JButton[] categorias = new JButton[6]; 
+	private final char[] cats = {'r','s','b','o','d','a'};
 	private final String[] categoriasP = {"Refeições","Salgados","Bebidas","Sobremesas","Doces","Coquetéis"};
 	private final String[] categoriasE = {"Comidas","Salados","Bebidas","Postres","Dulces","Cócteles"};
-	public final char lingua;
+	private final char lingua;
 	
 	public CategoriasU(char aux)
 	{
 		setLayout(new BorderLayout());
 
 		alto = new JPanel(new BorderLayout());
+		alto.setBackground(new Color(173,216,230));
 		baixo = new JPanel(new GridLayout(2,3,5,10));
+		baixo.setBackground(new Color(255,255,255));
 		baixo.setBorder(new EmptyBorder(0,30,80,30));
 
 		add(alto,BorderLayout.NORTH);
 		add(baixo,BorderLayout.SOUTH);
+
+		Icon flag = new ImageIcon(getClass().getResource("Gast.png"));
+		img = new JLabel();
+		img.setBorder(new EmptyBorder(20,145,38,60));
+		img.setIcon(flag);
+		alto.add(img,BorderLayout.SOUTH);
 
 		lingua = aux;
 
@@ -30,8 +40,8 @@ public class CategoriasU extends JFrame implements ActionListener
 
 		if (lingua == 'p')
 		{
-        	desc.setText("");
-        	desc.setFont(new Font("Arial", Font.PLAIN, 15));
+        	desc.setText("        A gastronomia do Uruguai é, basicamente, o resultado da fusão das cozinhas italiana e espanhola, o que determina as semelhanças com a culinária argentina. A isso se soma a de outros países europeus, a culinária crioula e, em menor medida, a culinária indígena. Essa diversidade de contribuições é um dos fatores diferenciadores da culinária do Rio da Prata em relação ao resto da América Latina. Por isso, é possível encontrar comidas e bebidas típicas trazidas pelos emigrantes europeus e adaptadas às possibilidades e disponibilidade do Uruguai.");
+        	desc.setFont(new Font("Arial", Font.BOLD, 15));
         	desc.setEditable(false);
         	desc.setWrapStyleWord(true);
         	desc.setLineWrap(true);
@@ -51,8 +61,8 @@ public class CategoriasU extends JFrame implements ActionListener
 		}
 		else if (lingua == 'e')
 		{
-        	desc.setText("La gastronomía de Uruguay es, básicamente, el resultado de la fusión de las cocinas italiana y española, lo que determina las similitudes con la cocina Argentina. A esto se agrega la de otros países europeos, de la cocina criolla y, en menor medida, de la cocina indígena. Esta diversidad de aportes es uno de los factores diferenciadores de la cocina rioplatense de la del resto de América Latina. Por ello, es posible encontrar comidas y bebidas típicas traídas por los emigrantes europeos y adaptadas a las posibilidades y disponibilidad en el Uruguay.");
-        	desc.setFont(new Font("Arial", Font.PLAIN, 15));
+        	desc.setText("        La gastronomía de Uruguay es, básicamente, el resultado de la fusión de las cocinas italiana y española, lo que determina las similitudes con la cocina Argentina. A esto se agrega la de otros países europeos, de la cocina criolla y, en menor medida, de la cocina indígena. Esta diversidad de aportes es uno de los factores diferenciadores de la cocina rioplatense de la del resto de América Latina. Por ello, es posible encontrar comidas y bebidas típicas traídas por los emigrantes europeos y adaptadas a las posibilidades y disponibilidad en el Uruguay.");
+        	desc.setFont(new Font("Arial", Font.BOLD, 15));
         	desc.setEditable(false);
         	desc.setWrapStyleWord(true);
         	desc.setLineWrap(true);
@@ -77,6 +87,14 @@ public class CategoriasU extends JFrame implements ActionListener
 			this.dispose();
 		}
 
+		Icon r = new ImageIcon (getClass().getResource("ret.png"));
+		ret = new JButton("",r);
+		ret.setBorder(null);
+		ret.setOpaque(false);
+		ret.setContentAreaFilled(false);
+		ret.setBorderPainted(false);
+		ret.addActionListener(this);
+		baixo.add(ret,BorderLayout.EAST);
 	}
 
 	char cat;
@@ -84,20 +102,34 @@ public class CategoriasU extends JFrame implements ActionListener
 	@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			for (int i = 0;i < 6;++i)
+			if (e.getSource() == ret)
 			{
-				if (e.getSource() == categorias[i])
-					cat = cats[i];
-				else
-					continue;
+				dispose();
+				Uruguay uruguay = new Uruguay(lingua);
+				uruguay.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+				uruguay.setSize(550,700);
+				uruguay.setResizable(false);
+				uruguay.setLocationRelativeTo(null);
+				uruguay.setVisible(true);
 			}
+			else{
+	
+				for (int i = 0;i < 6;++i)
+				{
+					if (e.getSource() == categorias[i])
+						cat = cats[i];
+					else
+						continue;
+				}
 
-    		dispose();
-			ReceitasU rec = new ReceitasU(lingua,cat);
-			rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-			rec.setSize(500,650);
-			rec.setResizable(false);
-			rec.setLocationRelativeTo(null);
-			rec.setVisible(true);
+    			dispose();
+				ReceitasU rec = new ReceitasU(lingua,cat);
+				rec.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+				rec.setSize(550,700);
+				rec.getContentPane().setBackground(new Color(255,222,173));
+				rec.setResizable(false);
+				rec.setLocationRelativeTo(null);
+				rec.setVisible(true);
+			}
 		}
 }
